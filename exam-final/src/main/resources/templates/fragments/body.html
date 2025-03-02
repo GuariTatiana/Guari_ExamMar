@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<body>
+
+
+ <!-- FORMULARIO DE VIAJE  -->
+ <!-- usuario registra su viaje, guarda viaje en la lista de viejes -->
+ <div data-th-fragment="reserva" class="container" align="center" >
+<form>
+	<label for="codigo" class="form-label">RESERVA TU VIAJE</label><br>
+  <br>
+  <div class="col-sm-6">
+    <label for="codigo" class="form-label">Codigo del conductor con quien desea viajar:</label>
+    <input type="text" class="form-control" id="codigo"  required>
+  </div><br>
+  <div class="col-sm-6">
+  <label for="codigo" class="form-label">Tipo de viaje</label>
+    <select class="form-select" aria-label="Default select example">
+		  <option selected></option>
+		  <option value="1">Corta distancia</option>
+		  <option value="2">Media distancia</option>
+		  <option value="3">Larga distancia</option>
+		</select>
+  </div>
+  
+  <br>
+  <button type="submit" class="btn btn-primary">Guardar viaje</button>
+</form>
+ </div>
+
+</body>
+</html>
