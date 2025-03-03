@@ -22,10 +22,32 @@
 		
 		<div data-th-replace="~{fragments/headear::carrusel}">
 		</div>
-		<br><br>
+		<br><br></div>
 
 		 <!-- AGREGAR CART DE LOS CONDUCTORES -->
+	<div class="container mt-5">
+        <h1>Conductores Disponibles</h1>
+        <div class="row">
+        	
+            <!-- Aquí se generarán las tarjetas de los conductores -->
+            <div class="col-md-4">	
+                <div class="card mb-4">
+                    <div class="card-body">
+                    	<h5 class="card-title">Codigo</h5>
+						<p class="card-text">Nombre</p>
+						<p class="card-text">Apellido</p>
+                        <p class="card-text">Edad</p>
+                        <p class="card-text">Automóvil</p>
+                        <p class="card-text">Tipo de Automóvil</p>
+					</div>
+                </div>
+            </div>
+        </div>
+        <!-- Agegar nuevo conductor -->
+    </div>
+    
 		 
+ 		<!-- FORMULARIO DE VIAJE  -->
 		<div data-th-replace="~{fragments/body::reserva}" class="center">
 		</div>
 		

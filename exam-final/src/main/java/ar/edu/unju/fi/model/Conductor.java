@@ -1,6 +1,6 @@
 package ar.edu.unju.fi.model;
-
 import java.time.LocalDate;
+import java.time.Period;
 
 import org.springframework.stereotype.Component;
 
@@ -17,7 +17,20 @@ public class Conductor {
 	    private LocalDate fechaNac;
 	    private String automovil;
 	    private String tipoAutomovil; // "X", "Luxe", "Premium"
-	    private boolean estado;
 	    
-	
+	    public int getEdad() {
+	        return Period.between(fechaNac, LocalDate.now()).getYears();
+	    }
+
+	    public double calcularCostoViaje(Viaje viaje) {
+	        double costoBase = viaje.getCosto();
+	        switch (tipoAutomovil) {
+	            case "Luxe":
+	                return costoBase * 1.10; // 10% adicional
+	            case "Premium":
+	                return costoBase * 1.20; // 20% adicional
+	            default:
+	                return costoBase; // Tarifa base
+	        }
+	    }
 }
