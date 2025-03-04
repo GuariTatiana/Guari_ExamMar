@@ -38,6 +38,8 @@ public class Conductor {
 	    @Pattern(regexp = "^(Base|Luxe|Premium)$", message = "El tipo de automóvil debe ser 'Base', 'Luxe' o 'Premium'.")
 	    private String tipoAutomovil; // "X", "Luxe", "Premium"
 	    
+	    //calcula la edad de una persona a partir de su fecha de nacimiento
+	    //Period permite calcular la edad de manera precisa, teniendo en cuenta no solo los años, sino también los meses y días.
 	    public int getEdad() {
 	        return Period.between(fechaNac, LocalDate.now()).getYears();
 	    }

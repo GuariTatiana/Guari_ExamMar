@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div data-th-fragment="reserva" class="container" align="center"> 
+<form>
+	<label for="codigo" class="form-label">REGISTRAR CONDUCTOR</label><br>
+  <br>
+  <div class="col-sm-6">
+    <label for="codigo" class="form-label">Codigo:</label>
+    <input type="text" class="form-control" id="codigo"  required>
+  </div><br>
+  <div class="col-sm-6">
+    <label for="nombre" class="form-label">Nombre:</label>
+    <input type="text" class="form-control" id="nombre"  required>
+  </div><br>
+   <div class="col-sm-6">
+    <label for="apellido" class="form-label">Apellido:</label>
+    <input type="text" class="form-control" id="apellido"  required>
+  </div><br>
+  <div class="col-sm-6">
+    <label for="nacimiento" class="form-label">Fecha de nacimiento:</label>
+    <input type="date" class="form-control" id="nacimiento"  required>
+  </div><br>
+   <div class="col-sm-6">
+    <label for="automovil" class="form-label">Automovil:</label>
+    <input type="text" class="form-control" id="automovil"  required>
+  </div><br>			
+  <div class="col-sm-6">
+  <label for="codigo" class="form-label">Tipo de automovil</label>
+    <select class="form-select" aria-label="Default select example">
+		  <option selected></option>
+		  <option value="1">X</option>
+		  <option value="2">Luxe</option>
+		  <option value="3">Premium</option>
+		</select>
+  </div>
+  
+  <br>
+  <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+</div>
+</body>
+</html>
