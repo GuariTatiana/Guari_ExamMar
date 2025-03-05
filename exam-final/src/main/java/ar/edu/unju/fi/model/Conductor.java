@@ -4,6 +4,8 @@ import java.time.Period;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -13,9 +15,12 @@ import lombok.Data;
 
 @Component
 @Data
+@Entity
 public class Conductor {
+	
+		@Id
 		@NotNull (message = "El Id del conductor no puede ser nulo")
-		private int id;
+		private String id;
 		
 		@NotBlank
 		@Size(min=3, max=30, message="El nombre debe contener como mínimo 3 caracteres y como máximo 30 caracteres")

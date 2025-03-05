@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.model.Conductor;
+import ar.edu.unju.fi.service.ConductorService;
 
 @Controller 
 public class ConductorController {
 
 		@Autowired
 		Conductor nuevoConductor;
+		
+		@Autowired
+		ConductorService conductorService;
 		
 
 	@GetMapping({"/formularioConductor"})
@@ -33,10 +37,12 @@ public class ConductorController {
 		
 		//Guardar
 		//ListadoConductores.agregarConductor(conductorParaGuardar);
+		conductorService.guardarConductor(conductorParaGuardar);
 		
 		//Mostrar el listado
 		ModelAndView modelView = new ModelAndView("listaDeConductores");
 		//modelView.addObject("listadoConductores", ListadoConductores.listarConductores());	
+		modelView.addObject("listadoConductores", conductorService.mostrarConductore());
 		
 		return modelView;		
 	}
