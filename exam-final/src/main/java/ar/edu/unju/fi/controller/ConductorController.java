@@ -26,7 +26,7 @@ public class ConductorController {
 		//vista
 		ModelAndView modelView =new ModelAndView ("formConductor");
 		//agrega el objeto
-		modelView.addObject("formConductor", nuevoConductor);
+		modelView.addObject("nuevoConductor", nuevoConductor);
 		modelView.addObject("band", false);
 		return modelView;		
 		}
@@ -40,7 +40,7 @@ public class ConductorController {
 		conductorService.guardarConductor(conductorParaGuardar);
 		
 		//Mostrar el listado
-		ModelAndView modelView = new ModelAndView("listaDeConductores");
+		ModelAndView modelView = new ModelAndView("index");
 		//modelView.addObject("listadoConductores", ListadoConductores.listarConductores());	
 		modelView.addObject("listadoConductores", conductorService.mostrarConductore());
 		

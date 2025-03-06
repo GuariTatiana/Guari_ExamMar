@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:data-th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>SERVICIO DE TRANSPORTES</title> 
 <link rel="stylesheet" data-th-href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
@@ -28,21 +27,21 @@
 		 <!-- AGREGAR CART DE LOS CONDUCTORES -->
 	<div class="container mt-5">
         <h1>Conductores Disponibles</h1>
+        
         <div class="row">
-        <div class="col-md-4">
         <div class="card mb-4" style="width: 18rem;" data-th-each="conductor : ${listadoConductores}">
 	  	<div class="card-body">
-			<h5 class="card-title" data-th-text="${conductor.id}"></h5>
-			<p>Nombre</p><p class="card-text" data-th-text="${conductor.nombre}"></p>
-			<p>Apellido</p><p class="card-text" data-th-text="${conductor.apellido}"></p>
-			<p>Años</p><p class="card-text" data-th-text="${conductor.fechaNac}"></p>
-			<p>Años</p><p class="card-text" data-th-text="${conductor.automovil}"></p>
-			<p>Años</p><p class="card-text" data-th-text="${conductor.tipoAutomovil}"></p>
+			<h5 class="card-title" data-th-text="${conductor.codigo}"></h5>
+			<p class="card-text" data-th-text="${conductor.nombre}"></p>
+			<p class="card-text" data-th-text="${conductor.apellido}"></p>
+			<p class="card-text" data-th-text="${conductor.fechaNac}"></p>
+			<p class="card-text" data-th-text="${conductor.automovil}"></p>
+			
 			<a  class="btn btn-danger">Borrar</a>					
 			<a  class="btn btn-warning" >Modificar</a>
 		</div>	
            </div>
-           </div>
+           
            </div>
 	</div>
     

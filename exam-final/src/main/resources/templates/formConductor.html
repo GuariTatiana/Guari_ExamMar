@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+>
 <head>
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <link rel="stylesheet" data-th-href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
 
@@ -19,39 +19,44 @@
 			</div>	
 	</header>
 </div>
+
+
 <br><br>
 <div data-th-fragment="reserva" class="container" align="center"> 
-<form data-th-object="${nuevoConductor}" data-th-action="${band}?@{/guardarConductor}" method="post">
-	<label for="codigo" class="form-label">REGISTRAR CONDUCTOR</label><br>
+
+<h1 align="center"> Formulario Conductor</h1>
+
+<form th:action="@{/guardarConductor}"  th:object="${nuevoConductor}" method="post">
   <br>
   <div class="col-sm-6">
     <label for="codigo" class="form-label">Codigo:</label>
-    <input type="text" class="form-control" id="codigo">
+    <input type="text" class="form-control" id="codigo" data-th-field="*{codigo}" required/>
   </div><br>
   <div class="col-sm-6">
     <label for="nombre" class="form-label">Nombre:</label>
-    <input type="text" class="form-control" id="nombre" required>
+    <input type="text" class="form-control" id="nombre" data-th-field="*{nombre}">
   </div><br>
    <div class="col-sm-6">
     <label for="apellido" class="form-label">Apellido:</label>
-    <input type="text" class="form-control" id="apellido" required>
+    <input type="text" class="form-control" id="apellido" data-th-field="*{apellido}">
   </div><br>
   <div class="col-sm-6">
     <label for="nacimiento" class="form-label">Fecha de nacimiento:</label>
-    <input type="date" class="form-control" id="nacimiento" required>
+    <input type="date" class="form-control" id="nacimiento" data-th-field="*{fechaNac}"  required>
   </div><br>
    <div class="col-sm-6">
     <label for="automovil" class="form-label">Automovil:</label>
-    <input type="text" class="form-control" id="automovil"  required>
-  </div><br>			
+    <input type="text" class="form-control" id="automovil" data-th-field="*{automovil}" required>
+  </div><br>	
+  		
   <div class="col-sm-6">
-  <label for="codigo" class="form-label">Tipo de automovil</label>
-    <select class="form-select" aria-label="Default select example">
-		  <option selected></option>
-		  <option value="1">X</option>
-		  <option value="2">Luxe</option>
-		  <option value="3">Premium</option>
-		</select>
+ <!--  <label for="tipoAuto" class="form-label">Tipo de automovil:</label>
+    <select id="tipoAuto" data-th-field="*{tipoAutomovil}" class="form-select" aria-label="Default select example">
+    	 <option value="1"></option>
+		  <option value="X">X</option>
+		  <option value="Luxe">Luxe</option>
+		  <option value="Premium">Premium</option>
+		</select> -->
   </div>
   
   <br>
