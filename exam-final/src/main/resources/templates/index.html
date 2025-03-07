@@ -37,7 +37,7 @@
 			<p class="card-text" data-th-text="${conductor.fechaNac}"></p>
 			<p class="card-text" data-th-text="${conductor.automovil}"></p>
 			
-			<a  class="btn btn-danger">Borrar</a>					
+			<a  data-th-href="@{'/eliminarConductor/'+${conductor.codigo}}" class="btn btn-danger">Borrar</a>					
 			<a  class="btn btn-warning" >Modificar</a>
 		</div>	
            </div>

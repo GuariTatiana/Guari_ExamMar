@@ -20,7 +20,7 @@ public class ConductorServiceImp implements ConductorService{
 		// TODO Auto-generated method stub
 		//conductor viene del controller, solo se esta guardando
 		//por si no viene con estado ponemos:
-		//conductor.setEstado(true);
+		conductor.setEstado(true);
 		conductorRepository.save(conductor);
 		
 	}
@@ -28,7 +28,21 @@ public class ConductorServiceImp implements ConductorService{
 	@Override
 	public List<Conductor> mostrarConductore() {
 		// TODO Auto-generated method stub
-		return conductorRepository.findAll();
+		//return conductorRepository.findAll();
+		return conductorRepository.findConductorByEstado(true);
+	}
+	
+	
+	@Override
+	public void eliminarConductor (String codigo) {
+
+		List<Conductor> conductores = conductorRepository.findAll();
+		for(Conductor i : conductores) {
+			if(i.getCodigo().equals(codigo)) {
+				i.setEstado(false);
+				conductorRepository.save(i);
+			}
+		}
 	}
 
 }

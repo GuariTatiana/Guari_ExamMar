@@ -13,6 +13,7 @@ public interface ConductorService {
 	
 	public void guardarConductor(Conductor conductor);
 	public List<Conductor> mostrarConductore ();
-	
+	//proceso de borrado
+	public void eliminarConductor(String codigo);
 	
 }
