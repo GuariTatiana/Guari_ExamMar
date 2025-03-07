@@ -41,7 +41,7 @@ public class Conductor {
 	    
 	    
 	    //@Pattern(regexp = "^(X|Luxe|Premium)$", message = "El tipo de automóvil debe ser 'X', 'Luxe' o 'Premium'.")
-	   // private String tipoAutomovil; // "X", "Luxe", "Premium"
+	    private String tipoAutomovil; // "X", "Luxe", "Premium"
 	    
 	    private boolean estado;
 	    
