@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" >
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -11,16 +11,19 @@
  <!-- FORMULARIO DE VIAJE  -->
  <!-- usuario registra su viaje, guarda viaje en la lista de viejes -->
  <div data-th-fragment="reserva" class="container" align="center" >
-<form>
-	<label for="codigo" class="form-label">RESERVA TU VIAJE</label><br>
+ <h1>Reserva de viaje</h1>
+
+ <!--<form th:action="@{/guardarConductor}"  th:object="${nuevoConductor}" method="post"> --> 
+<form data-th-object="${nuevoConductor}" data-th-action="@{/guardarConductor}" method="post">	
   <br>
   <div class="col-sm-6">
-    <label for="codigo" class="form-label">Codigo del conductor con quien desea viajar:</label>
-    <input type="text" class="form-control" id="codigo"  required>
-  </div><br>
+    <label for="codigo" class="form-label">Codigo del conductor:</label>
+    <input type="text" class="form-control" id="codigo" required/>
+  </div>
+  <br>
   <div class="col-sm-6">
-  <label for="codigo" class="form-label">Tipo de viaje</label>
-    <select class="form-select" aria-label="Default select example">
+  <label for="tipoViaje" class="form-label">Tipo de viaje</label>
+    <select id="tipoViaje" class="form-select"  aria-label="Default select example">
 		  <option selected></option>
 		  <option value="1">corta</option>
 		  <option value="2">media</option>
