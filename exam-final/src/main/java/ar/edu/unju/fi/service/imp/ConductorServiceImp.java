@@ -45,4 +45,28 @@ public class ConductorServiceImp implements ConductorService{
 		}
 	}
 
+	@Override
+	public void modificarConductor(Conductor conductor) {
+		// TODO Auto-generated method stub
+		List<Conductor> conductores = conductorRepository.findAll();
+		for (int i = 0; i < conductores.size(); i++) {
+			Conductor a = conductores.get(i);
+			if (a.getCodigo().equals(conductor.getCodigo())) {
+				conductor.setEstado(true);
+				conductorRepository.save(conductor);
+				break;
+			}
+		}
+	}
+
+	@Override
+	public Conductor buscarConductor(String codigo) {
+		// TODO Auto-generated method stub
+		List<Conductor> conductores = conductorRepository.findAll();
+		for (Conductor a : conductores) {
+			if(a.getCodigo().equals(codigo)) return a;
+		}
+		return null;
+	}
+
 }

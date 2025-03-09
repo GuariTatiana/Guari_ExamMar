@@ -26,7 +26,7 @@
 
 <h1 align="center"> Formulario Conductor</h1>
 
-<form th:action="@{/guardarConductor}"  th:object="${nuevoConductor}" method="post">
+<form th:action="${band}?@{/modificarConductor}:@{/guardarConductor}"  th:object="${nuevoConductor}" method="post">
   <br>
   <div class="col-sm-6">
     <label for="codigo" class="form-label">Codigo:</label>

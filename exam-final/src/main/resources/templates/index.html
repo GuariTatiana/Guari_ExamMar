@@ -34,12 +34,12 @@
 			<h5 class="card-title" data-th-text="${conductor.codigo}"></h5>
 			<p class="card-text" data-th-text="${conductor.nombre}"></p>
 			<p class="card-text" data-th-text="${conductor.apellido}"></p>
-			<p class="card-text" data-th-text="${conductor.fechaNac}"></p>
+			<p class="card-text" data-th-text="${conductor.edad}"></p>
 			<p class="card-text" data-th-text="${conductor.automovil}"></p>
 			<p class="card-text" data-th-text="${conductor.tipoAutomovil}"></p>
 			
 			<a  data-th-href="@{'/eliminarConductor/'+${conductor.codigo}}" class="btn btn-danger">Borrar</a>					
-			<a  class="btn btn-warning" >Modificar</a>
+			<a  data-th-href="@{'/modificarConductor/'+${conductor.codigo}}" class="btn btn-warning" >Modificar</a>
 		</div>	
            </div>
            

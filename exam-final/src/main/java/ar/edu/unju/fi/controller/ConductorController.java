@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.model.Conductor;
 import ar.edu.unju.fi.service.ConductorService;
 
+
 @Controller 
 public class ConductorController {
 
@@ -60,5 +61,24 @@ public class ConductorController {
 		
 		return modelView;		
 		}
+	
+	@GetMapping("/modificarConductor/{codigo}")
+	public ModelAndView getFormModificarConductor(@PathVariable String codigo) {
+	    ModelAndView modelView = new ModelAndView("formConductor");
+	    Conductor conductor = conductorService.buscarConductor(codigo);
+	    modelView.addObject("nuevoConductor", conductor);
+	    modelView.addObject("band", true); 
+	    return modelView;
+	}
+
+	@PostMapping("/modificarConductor")
+	public ModelAndView updateConductor(@ModelAttribute("nuevoConductor") Conductor conductorParaActualizar) {
+	    conductorService.modificarConductor(conductorParaActualizar);
+	    
+	    ModelAndView modelView = new ModelAndView("index");
+	    modelView.addObject("listadoConductores", conductorService.mostrarConductore());
+	    
+	    return modelView;
+	}
 
 }

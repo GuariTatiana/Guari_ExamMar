@@ -15,5 +15,6 @@ public interface ConductorService {
 	public List<Conductor> mostrarConductore ();
 	//proceso de borrado
 	public void eliminarConductor(String codigo);
-	
+	public void modificarConductor(Conductor conductor);
+	public Conductor buscarConductor(String codigo);
 }
