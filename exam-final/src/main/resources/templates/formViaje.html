@@ -24,15 +24,28 @@
 <h1>Reserva viaje</h1>
 <form action="#" th:action="@{/viaje/guardar}" th:object="${viaje}" method="post">
 
-	<div class="col-sm-6">
-	            <label class="form-label">Conductor:</label>
-	            <select id="conductor" class="form-control">
-	            <option value="">Seleccionar un Conductor</option>
-	                <option></option>
-	            </select>
-	 </div>
-    <br>
+	<!--<div class="col-sm-6">
+     <label class="form-label">Conductor:</label>
+    <select id="conductor" class="form-control" th:field="*{conductor.codigo}" required>
+        <option value="">Seleccionar un Conductor</option>
+        <option th:each="conductor : ${listadoConductores}" 
+                th:value="${conductor.codigo}" 
+                th:text="${conductor.nombre}"> 
+        </option>
+    </select></div>-->
+    
     <div class="col-sm-6">
+    <label class="form-label">Conductores:</label>
+    <select id="conductores" class="form-control" th:field="*{conductores}" multiple>
+        <option th:each="conductor : ${listadoConductores}" 
+                th:value="${conductor.codigo}" 
+                th:text="${conductor.nombre}"> 
+        </option>
+    </select>
+
+</div> 
+    <br>
+    <!--  <div class="col-sm-6">
     <label for="tipoConduc" class="form-label">Revise el tipo de vehiculo del conductor:</label>
 	<select class="form-select" id="tipoConduc" aria-label="Default select example" th:field="*{tipoConductor}">
 	  <option value="1"></option>
@@ -40,7 +53,7 @@
 	  <option value="Luxe">Luxe</option>
 	  <option value="Premium">Premium</option>
 	</select>
-    </div>
+    </div>-->
     <div class="col-sm-6">
     <label for="tipoViaje" class="form-label">Tipo Viaje:</label>
 	<select class="form-select" id="tipoViaje" aria-label="Default select example" th:field="*{tipoViaje}">
@@ -51,13 +64,6 @@
 	</select>
     </div>
     <br>
-    <!--  <div class="col-sm-6">
-	            <label class="form-label">Conductor:</label>
-	            <select id="conductor" class="form-control" data-th-field="*{conductor.codigo}" required>
-	            <option value="">Seleccionar Carrera</option>
-	                <option data-th-each="Conductor:${listadoConductores}" data-th-value="${Conductor.codigo}" data-th-text="${Conductor.codigo}"></option>
-	            </select>
-	 </div> -->
     
     <br>
 	<button type="submit" class="btn btn-primary">Guardar</button>

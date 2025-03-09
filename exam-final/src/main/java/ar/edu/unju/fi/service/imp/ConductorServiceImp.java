@@ -29,6 +29,7 @@ public class ConductorServiceImp implements ConductorService{
 	public List<Conductor> mostrarConductore() {
 		// TODO Auto-generated method stub
 		//return conductorRepository.findAll();
+		// Devuelve solo los conductores activos
 		return conductorRepository.findConductorByEstado(true);
 	}
 	

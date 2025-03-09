@@ -27,7 +27,7 @@
         <div class="card mb-4" style="width: 18rem;">
 	  	<div class="card-body">
 			<p>Codigo:</p><h5 class="card-title" data-th-text="${viaje.codigo}"></h5>
-			<p>Conductor:</p><p class="card-text" data-th-text="${viaje.tipoConductor}"></p>
+			<p>Conductor:</p><p class="card-text" data-th-text="${#lists.size(viaje.conductores) > 0 ? viaje.conductores[0].nombre : 'No hay conductor seleccionado'}"></p>
 			<p>Tipo de viaje:</p><p class="card-text" data-th-text="${viaje.tipoViaje}"></p>
 			<p>Costo del viaje:</p><p class="card-text" data-th-text="${viaje.calcularCostoTotal}"></p>
 		</div>	

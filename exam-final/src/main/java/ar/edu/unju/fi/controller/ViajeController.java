@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import ar.edu.unju.fi.model.Viaje;
+import ar.edu.unju.fi.service.ConductorService;
 import ar.edu.unju.fi.service.ViajeService;
 //import ar.edu.unju.fi.service.ConductorService;
 
@@ -25,8 +26,8 @@ public class ViajeController {
 	@Autowired
 	ViajeService viajeService;
 	
-	//@Autowired
-    //private ConductorService conductorService;
+	@Autowired
+    private ConductorService conductorService;
 	
 
 	//muestro html que cree
@@ -36,8 +37,8 @@ public class ViajeController {
 	ModelAndView modelView =new ModelAndView ("formViaje");//Nombre de la vista
 	//agrega el objeto
 	modelView.addObject("viaje", new Viaje());//pasar producto al modelo
-	
-	 //modelView.addObject("listadoConductores", conductorService.mostrarConductore());
+	// Obtener la lista de conductores
+	modelView.addObject("listadoConductores", conductorService.mostrarConductore());
 	
 	//modelView.addObject("band", false);
 	return modelView;//devolver 		

@@ -1,10 +1,13 @@
 package ar.edu.unju.fi.model;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 //import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 @Component
@@ -23,11 +26,14 @@ public class Viaje {
     //@NotNull
     private double costo; // Costo base del viaje
     
-    private String tipoConductor;
+    //private String tipoConductor;
     
     //private Conductor conductor;
     
     private boolean estado;
+    
+    @ManyToMany 
+    private List<Conductor> conductores;
 
     public double calcularCostoTotal() {
         double costoBase = obtenerCostoBase();
@@ -49,6 +55,25 @@ public class Viaje {
     }
     
     private double obtenerAdicional() {
+        double adicional = 0;
+        // Aquí puedes calcular el adicional basado en los conductores
+        for (Conductor conductor : conductores) {
+            if (conductor != null && conductor.getTipoAutomovil() != null) {
+                String tipoAutomovil = conductor.getTipoAutomovil();
+                switch (tipoAutomovil) {
+                    case "Luxe":
+                        adicional += obtenerCostoBase() * 0.1; // 10% adicional por conductor Luxe
+                        break;
+                    case "Premium":
+                        adicional += obtenerCostoBase() * 0.2; // 20% adicional por conductor Premium
+                        break;
+                }
+            }
+        }
+        return adicional;
+    }
+    
+   /** private double obtenerAdicional() {
     	double adicional = 0;
         switch (this.tipoConductor) {
         case "Luxe":
@@ -60,11 +85,11 @@ public class Viaje {
                
         }
         return adicional; // Manejo de caso inválido
-    }
+    }**/
 
-   /** private double obtenerAdicional() {
+   /**private double obtenerAdicional() {
         double adicional = 0;
-        if (this.conductor != null && this.conductor.getAutomovil() != null) {
+        if (this.conductor != null && this.conductor.getTipoAutomovil() != null) {
             String tipoAutomovil = this.conductor.getTipoAutomovil() ;
             switch (tipoAutomovil) {
                 case "Luxe":
@@ -76,20 +101,7 @@ public class Viaje {
             }
         }
         return adicional;
-    }**/
-
+    }
+**/
     
-    //por ahora lo calculamos
-    /**public static double obtenerCostoBase(String tipoViaje) {
-        switch (tipoViaje.toLowerCase()) {
-            case "corta":
-                return 7000;
-            case "media":
-                return 10000;
-            case "larga":
-                return 20000;
-            default:
-                throw new IllegalArgumentException("Tipo de viaje no válido: ");
-        }
-        }**/
 }

@@ -1,17 +1,14 @@
 package ar.edu.unju.fi.model;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-//import jakarta.validation.constraints.NotBlank;
-//import jakarta.validation.constraints.NotNull;
-//import jakarta.validation.constraints.Past;
-//import jakarta.validation.constraints.Pattern;
-//import jakarta.validation.constraints.Size;
+import jakarta.persistence.ManyToMany;
 import lombok.Data;
 
 @Component
@@ -21,12 +18,8 @@ public class Conductor {
 	
 		@Id
 		@GeneratedValue
-		//@NotNull (message = "El Id del conductor no puede ser nulo")
 		private Integer codigo;
-		
-		//@NotBlank
-		//@Size(min=3, max=30, message="El nombre debe contener como mínimo 3 caracteres y como máximo 30 caracteres")
-		//@Pattern(regexp= "[a-z A-Z]*", message="Debe ingresar únicamente letras")
+	
 	    private String nombre;
 		
 		//@NotBlank
@@ -47,6 +40,8 @@ public class Conductor {
 	    
 	    private boolean estado;
 	    
+	    @ManyToMany(mappedBy = "conductores") 
+	    private List<Viaje> viajes;
 	    
 	    //calcula la edad de una persona a partir de su fecha de nacimiento
 	    //Period permite calcular la edad de manera precisa, teniendo en cuenta no solo los años, sino también los meses y días.
@@ -54,15 +49,4 @@ public class Conductor {
 	        return Period.between(fechaNac, LocalDate.now()).getYears();
 	    }
 
-	   /** public double calcularCostoViaje(Viaje viaje) {
-	        double costoBase = viaje.getCosto();
-	        switch (tipoAutomovil) {
-	            case "Luxe":
-	                return costoBase * 1.10; // 10% adicional
-	            case "Premium":
-	                return costoBase * 1.20; // 20% adicional
-	            default:
-	                return costoBase; // Tarifa base
-	        }
-	    }**/
 }
