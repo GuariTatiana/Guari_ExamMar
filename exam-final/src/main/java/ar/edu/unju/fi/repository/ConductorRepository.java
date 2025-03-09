@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import ar.edu.unju.fi.model.Conductor;
 
 @Repository
-public interface ConductorRepository extends JpaRepository <Conductor, String> {
+public interface ConductorRepository extends JpaRepository <Conductor, Integer> {
 
 	List <Conductor> findConductorByEstado (Boolean estado);
 	

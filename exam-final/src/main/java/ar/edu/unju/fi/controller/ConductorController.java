@@ -49,8 +49,15 @@ public class ConductorController {
 		return modelView;		
 	}
 	
+	@GetMapping("/index")
+	public ModelAndView mostrarListaConductores() {
+	    ModelAndView modelView = new ModelAndView("index");
+	    modelView.addObject("listadoConductores", conductorService.mostrarConductore());
+	    return modelView;
+	}
+	
 	@GetMapping("/eliminarConductor/{codigo}")
-	public ModelAndView borrarConductor (@PathVariable String codigo) {
+	public ModelAndView borrarConductor (@PathVariable Integer codigo) {
 		//borrar
 		//ListadoConductores.eliminarConductor(codigo);
 		conductorService.eliminarConductor(codigo);
@@ -63,7 +70,7 @@ public class ConductorController {
 		}
 	
 	@GetMapping("/modificarConductor/{codigo}")
-	public ModelAndView getFormModificarConductor(@PathVariable String codigo) {
+	public ModelAndView getFormModificarConductor(@PathVariable Integer codigo) {
 	    ModelAndView modelView = new ModelAndView("formConductor");
 	    Conductor conductor = conductorService.buscarConductor(codigo);
 	    modelView.addObject("nuevoConductor", conductor);
@@ -73,7 +80,9 @@ public class ConductorController {
 
 	@PostMapping("/modificarConductor")
 	public ModelAndView updateConductor(@ModelAttribute("nuevoConductor") Conductor conductorParaActualizar) {
-	    conductorService.modificarConductor(conductorParaActualizar);
+		System.out.println("Conductor a actualizar: " + conductorParaActualizar);
+		System.out.println("ID del conductor: " + conductorParaActualizar.getCodigo());
+		conductorService.modificarConductor(conductorParaActualizar);
 	    
 	    ModelAndView modelView = new ModelAndView("index");
 	    modelView.addObject("listadoConductores", conductorService.mostrarConductore());

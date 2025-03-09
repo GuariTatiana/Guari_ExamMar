@@ -10,7 +10,7 @@ import ar.edu.unju.fi.model.Viaje;
 
 
 @Repository
-public interface ViajeRepository extends JpaRepository <Viaje, String>{
+public interface ViajeRepository extends JpaRepository <Viaje, Integer>{
 
 	//List <Viaje> findViajeByEstado (Boolean estado);
 }

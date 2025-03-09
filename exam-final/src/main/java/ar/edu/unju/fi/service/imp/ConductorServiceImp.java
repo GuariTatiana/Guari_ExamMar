@@ -34,11 +34,11 @@ public class ConductorServiceImp implements ConductorService{
 	
 	
 	@Override
-	public void eliminarConductor (String codigo) {
+	public void eliminarConductor (Integer codigo) {
 
 		List<Conductor> conductores = conductorRepository.findAll();
 		for(Conductor i : conductores) {
-			if(i.getCodigo().equals(codigo)) {
+			if(i.getCodigo() .equals(codigo)) {
 				i.setEstado(false);
 				conductorRepository.save(i);
 			}
@@ -47,20 +47,19 @@ public class ConductorServiceImp implements ConductorService{
 
 	@Override
 	public void modificarConductor(Conductor conductor) {
-		// TODO Auto-generated method stub
-		List<Conductor> conductores = conductorRepository.findAll();
-		for (int i = 0; i < conductores.size(); i++) {
-			Conductor a = conductores.get(i);
-			if (a.getCodigo().equals(conductor.getCodigo())) {
-				conductor.setEstado(true);
-				conductorRepository.save(conductor);
-				break;
-			}
-		}
+	    // Verifica si el conductor existe
+	    if (conductorRepository.existsById(conductor.getCodigo())) {
+	        // Establece el estado del conductor
+	        conductor.setEstado(true);
+	        // Guarda el conductor (esto actualizará el registro existente)
+	        conductorRepository.save(conductor);
+	    } else {
+	        System.out.println("Conductor no encontrado para modificar: " + conductor.getCodigo());
+	    }
 	}
 
 	@Override
-	public Conductor buscarConductor(String codigo) {
+	public Conductor buscarConductor(Integer codigo) {
 		// TODO Auto-generated method stub
 		List<Conductor> conductores = conductorRepository.findAll();
 		for (Conductor a : conductores) {

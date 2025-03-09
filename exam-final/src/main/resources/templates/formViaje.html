@@ -25,19 +25,31 @@
 <form action="#" th:action="@{/viaje/guardar}" th:object="${viaje}" method="post">
 
 	<div class="col-sm-6">
-      <label for="codigo" class="form-label">Codigo</label>
-      <input type="text" id="codigo" class="form-control" th:field="*{codigo}">
-    </div>
+	            <label class="form-label">Conductor:</label>
+	            <select id="conductor" class="form-control">
+	            <option value="">Seleccionar un Conductor</option>
+	                <option></option>
+	            </select>
+	 </div>
     <br>
     <div class="col-sm-6">
     <label for="tipoViaje" class="form-label">TipoViaje</label>
-	<select class="form-select" id="tipoViaje" aria-label="Default select example" th:field="*{tipo}">
+	<select class="form-select" id="tipoViaje" aria-label="Default select example" th:field="*{tipoViaje}">
 	  <option value="1"></option>
 	  <option value="corta">Corta distancia</option>
 	  <option value="media">Media distancia</option>
 	  <option value="larga">Larga distancia</option>
 	</select>
     </div>
+    <br>
+    <!--  <div class="col-sm-6">
+	            <label class="form-label">Conductor:</label>
+	            <select id="conductor" class="form-control" data-th-field="*{conductor.codigo}" required>
+	            <option value="">Seleccionar Carrera</option>
+	                <option data-th-each="Conductor:${listadoConductores}" data-th-value="${Conductor.codigo}" data-th-text="${Conductor.codigo}"></option>
+	            </select>
+	 </div> -->
+    
     <br>
 	<button type="submit" class="btn btn-primary">Guardar</button>
 	

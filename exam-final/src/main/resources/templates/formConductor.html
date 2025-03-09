@@ -26,12 +26,9 @@
 
 <h1 align="center"> Formulario Conductor</h1>
 
-<form th:action="${band}?@{/modificarConductor}:@{/guardarConductor}"  th:object="${nuevoConductor}" method="post">
+<form th:action="${band} ? @{/modificarConductor} : @{/guardarConductor}"  th:object="${nuevoConductor}" method="post">
   <br>
-  <div class="col-sm-6">
-    <label for="codigo" class="form-label">Codigo:</label>
-    <input type="text" class="form-control" id="codigo" data-th-field="*{codigo}" required/>
-  </div><br>
+  <input type="hidden" th:field="*{codigo}" /> <!-- Campo oculto para el ID -->
   <div class="col-sm-6">
     <label for="nombre" class="form-label">Nombre:</label>
     <input type="text" class="form-control" id="nombre" data-th-field="*{nombre}">

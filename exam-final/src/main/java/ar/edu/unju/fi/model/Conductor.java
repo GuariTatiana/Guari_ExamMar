@@ -5,6 +5,7 @@ import java.time.Period;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 //import jakarta.validation.constraints.NotBlank;
 //import jakarta.validation.constraints.NotNull;
@@ -19,8 +20,9 @@ import lombok.Data;
 public class Conductor {
 	
 		@Id
+		@GeneratedValue
 		//@NotNull (message = "El Id del conductor no puede ser nulo")
-		private String codigo;
+		private Integer codigo;
 		
 		//@NotBlank
 		//@Size(min=3, max=30, message="El nombre debe contener como mínimo 3 caracteres y como máximo 30 caracteres")
@@ -52,7 +54,7 @@ public class Conductor {
 	        return Period.between(fechaNac, LocalDate.now()).getYears();
 	    }
 
-	    /**public double calcularCostoViaje(Viaje viaje) {
+	   /** public double calcularCostoViaje(Viaje viaje) {
 	        double costoBase = viaje.getCosto();
 	        switch (tipoAutomovil) {
 	            case "Luxe":
