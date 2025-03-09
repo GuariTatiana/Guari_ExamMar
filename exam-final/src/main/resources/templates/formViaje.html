@@ -33,7 +33,16 @@
 	 </div>
     <br>
     <div class="col-sm-6">
-    <label for="tipoViaje" class="form-label">TipoViaje</label>
+    <label for="tipoConduc" class="form-label">Revise el tipo de vehiculo del conductor:</label>
+	<select class="form-select" id="tipoConduc" aria-label="Default select example" th:field="*{tipoConductor}">
+	  <option value="1"></option>
+	  <option value="X">X</option>
+	  <option value="Luxe">Luxe</option>
+	  <option value="Premium">Premium</option>
+	</select>
+    </div>
+    <div class="col-sm-6">
+    <label for="tipoViaje" class="form-label">Tipo Viaje:</label>
 	<select class="form-select" id="tipoViaje" aria-label="Default select example" th:field="*{tipoViaje}">
 	  <option value="1"></option>
 	  <option value="corta">Corta distancia</option>

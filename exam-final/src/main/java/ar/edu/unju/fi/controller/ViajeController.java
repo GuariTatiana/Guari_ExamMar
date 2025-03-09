@@ -48,11 +48,11 @@ public class ViajeController {
 	public ModelAndView guardarViaje(Viaje viaje) {
 		viajeService.guardarViaje(viaje); // Llamar al servicio para guardar el producto en bd
 		// Redirigir a la lista de viajes
-		ModelAndView modelAndView = new ModelAndView("formViaje");
+		ModelAndView modelAndView = new ModelAndView("reservaViaje");
 		
 		//modelAndView.addObject("listadoConductores", conductorService .mostrarConductore()); // Obtener la lista de conductores
-		
-		modelAndView.addObject("viaje", new Viaje()); // Pasar un nuevo objeto Producto al modelo (campos vacíos)
+		modelAndView.addObject("viaje", viaje); // Pasar el viaje guardado al modelo
+		//modelAndView.addObject("viaje", new Viaje()); // Pasar un nuevo objeto Producto al modelo (campos vacíos)
 		modelAndView.addObject("mensaje", "Viaje guardado con éxito!"); // Mensaje de éxito
         return modelAndView;
 			

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" data-th-href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+<div>
+	<header class="container-fluid  justify-content-center">
+			<p id="color" class="text-lisht mb-0 p-4 fs-6"></p>
+			<div data-th-replace="~{fragments/headear::navbar}">
+			</div>	
+	</header>
+</div>
+<br><br>
+
+<div>
+	
+	 <!-- RECIBO DE VIAJE -->
+	 <div class="container mt-5">
+        <h1>Recibo de viaje</h1>
+        
+        <div class="row">
+        <div class="card mb-4" style="width: 18rem;">
+	  	<div class="card-body">
+			<p>Codigo:</p><h5 class="card-title" data-th-text="${viaje.codigo}"></h5>
+			<p>Conductor:</p><p class="card-text" data-th-text="${viaje.tipoConductor}"></p>
+			<p>Tipo de viaje:</p><p class="card-text" data-th-text="${viaje.tipoViaje}"></p>
+			<p>Costo del viaje:</p><p class="card-text" data-th-text="${viaje.calcularCostoTotal}"></p>
+		</div>	
+        </div>
+           
+           <div class="alert alert-success" role="alert" data-th-if="${mensaje}">
+        <span data-th-text="${mensaje}"></span>
+    </div> 
+           </div>
+	</div>
+
+</div>
+<script data-th-src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>	
+</body>
+</html>
