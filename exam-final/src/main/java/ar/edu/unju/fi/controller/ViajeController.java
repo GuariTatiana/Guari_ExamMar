@@ -40,7 +40,7 @@ public class ViajeController {
 	// Obtener la lista de conductores
 	modelView.addObject("listadoConductores", conductorService.mostrarConductore());
 	
-	//modelView.addObject("band", false);
+	modelView.addObject("band", false);
 	return modelView;//devolver 		
 	}
 

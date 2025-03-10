@@ -18,7 +18,7 @@ public class ViajeServiceImp implements ViajeService {
 	
 	@Override
 	public void guardarViaje(Viaje viaje) {
-		//viaje.setEstado(true);
+		viaje.setEstado(true);
 		viajeRepository.save(viaje);
 		//return viajeRepository.save(viaje);
 	}
