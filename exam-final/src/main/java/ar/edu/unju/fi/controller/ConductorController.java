@@ -8,15 +8,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.model.Conductor;
+import ar.edu.unju.fi.DTO.ConductorDTO;
+//import ar.edu.unju.fi.model.Conductor;
 import ar.edu.unju.fi.service.ConductorService;
 
 
 @Controller 
 public class ConductorController {
 
+		//@Autowired
+		//Conductor nuevoConductor;
+		
 		@Autowired
-		Conductor nuevoConductor;
+		ConductorDTO nuevoConductorDTO;
 		
 		@Autowired
 		ConductorService conductorService;
@@ -28,14 +32,14 @@ public class ConductorController {
 		//vista
 		ModelAndView modelView =new ModelAndView ("formConductor");
 		//agrega el objeto
-		modelView.addObject("nuevoConductor", nuevoConductor);
+		modelView.addObject("nuevoConductor", nuevoConductorDTO);
 		modelView.addObject("band", false);
 		return modelView;		
 		}
 
 
 	@PostMapping("/guardarConductor")
-	public ModelAndView saveConductor(@ModelAttribute("nuevoConductor") Conductor conductorParaGuardar) {
+	public ModelAndView saveConductor(@ModelAttribute("nuevoConductor") ConductorDTO conductorParaGuardar) {
 		
 		//Guardar
 		//ListadoConductores.agregarConductor(conductorParaGuardar);
@@ -72,14 +76,14 @@ public class ConductorController {
 	@GetMapping("/modificarConductor/{codigo}")
 	public ModelAndView getFormModificarConductor(@PathVariable Integer codigo) {
 	    ModelAndView modelView = new ModelAndView("formConductor");
-	    Conductor conductor = conductorService.buscarConductor(codigo);
+	    ConductorDTO conductor = conductorService.buscarConductor(codigo);
 	    modelView.addObject("nuevoConductor", conductor);
 	    modelView.addObject("band", true); 
 	    return modelView;
 	}
 
 	@PostMapping("/modificarConductor")
-	public ModelAndView updateConductor(@ModelAttribute("nuevoConductor") Conductor conductorParaActualizar) {
+	public ModelAndView updateConductor(@ModelAttribute("nuevoConductor") ConductorDTO conductorParaActualizar) {
 		System.out.println("Conductor a actualizar: " + conductorParaActualizar);
 		System.out.println("ID del conductor: " + conductorParaActualizar.getCodigo());
 		conductorService.modificarConductor(conductorParaActualizar);
