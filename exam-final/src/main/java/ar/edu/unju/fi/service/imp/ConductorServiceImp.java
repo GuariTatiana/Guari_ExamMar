@@ -21,10 +21,10 @@ public class ConductorServiceImp implements ConductorService{
 	ConductorMapDTO conductorMapDTO;
 	
 	@Override
-	public void guardarConductor(ConductorDTO conductorDTO) {
+	public void guardarConductor(Conductor conductor) {
 		// TODO Auto-generated method stub
 		//conductor viene del controller, solo se esta guardando
-		 Conductor conductor = conductorMapDTO.convertirConductorDTOAConductor(conductorDTO);
+		 //Conductor conductor = conductorMapDTO.convertirConductorDTOAConductor(conductorDTO);
 		//por si no viene con estado ponemos:
 		conductor.setEstado(true);
 		//conductorRepository.save(conductorMapDTO.convertirConductorDTOAConductor(conductorDTO));

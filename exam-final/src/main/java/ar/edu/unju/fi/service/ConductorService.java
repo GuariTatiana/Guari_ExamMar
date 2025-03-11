@@ -6,13 +6,14 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.DTO.ConductorDTO;
 //import ar.edu.unju.fi.model.Conductor;
+import ar.edu.unju.fi.model.Conductor;
 
 @Service
 public interface ConductorService {
 
 	//metodos abstractos de la interfaz
 	
-	public void guardarConductor(ConductorDTO conductorDTO);
+	public void guardarConductor(Conductor conductor);
 	public List<ConductorDTO> mostrarConductore ();
 	//proceso de borrado
 	public void eliminarConductor(Integer codigo);

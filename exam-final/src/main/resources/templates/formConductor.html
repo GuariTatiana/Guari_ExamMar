@@ -29,27 +29,31 @@
 <form th:action="${band} ? @{/modificarConductor} : @{/guardarConductor}"  th:object="${nuevoConductor}" method="post">
   <br>
   <input type="hidden" th:field="*{codigo}" /> <!-- Campo oculto para el ID -->
-  <div class="col-sm-6">
+	  <div class="col-sm-6">
     <label for="nombre" class="form-label">Nombre:</label>
-    <input type="text" class="form-control" id="nombre" data-th-field="*{nombre}">
+    <input type="text" class="form-control" id="nombre" data-th-field="*{nombre}" required >
+   <p class="form-text text-danger" data-th-if="${#fields.hasErrors('nombre')}" data-th-errors="*{nombre}"></p>
   </div><br>
    <div class="col-sm-6">
     <label for="apellido" class="form-label">Apellido:</label>
-    <input type="text" class="form-control" id="apellido" data-th-field="*{apellido}">
+    <input type="text" class="form-control" id="apellido" data-th-field="*{apellido}" required>
+    <p class="form-text text-danger" data-th-if="${#fields.hasErrors('apellido')}" data-th-errors="*{apellido}"></p>
   </div><br>
   <div class="col-sm-6">
     <label for="nacimiento" class="form-label">Fecha de nacimiento:</label>
     <input type="date" class="form-control" id="nacimiento" data-th-field="*{fechaNac}"  required>
+    <p class="form-text text-danger" data-th-if="${#fields.hasErrors('fechaNac')}" data-th-errors="*{fechaNac}"></p>
   </div><br>
    <div class="col-sm-6">
     <label for="automovil" class="form-label">Automovil:</label>
     <input type="text" class="form-control" id="automovil" data-th-field="*{automovil}" required>
+    <p class="form-text text-danger" data-th-if="${#fields.hasErrors('automovil')}" data-th-errors="*{automovil}"></p>
   </div><br>	
   		
   <div class="col-sm-6">
   <label for="tipoAuto" class="form-label">Tipo de automovil:</label>
-    <select id="tipoAuto" data-th-field="*{tipoAutomovil}" class="form-select" aria-label="Default select example">
-    	 <option value="1"></option>
+    <select id="tipoAuto" data-th-field="*{tipoAutomovil}" class="form-select" aria-label="Default select example" required>
+    	 <option value=""></option>
 		  <option value="X">X</option>
 		  <option value="Luxe">Luxe</option>
 		  <option value="Premium">Premium</option>

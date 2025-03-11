@@ -9,6 +9,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.Past;
+//import jakarta.validation.constraints.Min;
+//import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Component
@@ -19,19 +24,25 @@ public class Conductor {
 		@Id
 		@GeneratedValue
 		private Integer codigo;
-	
-	    private String nombre;
+		
+		//@NotBlank(message="Debe ingresar nombre del autor")
+		@Size(min=3, max=40, message="El nombre debe contener como mínimo 3 caracteres y como máximo 40 caracteres")
+		@Pattern(regexp= "[a-z A-Z]*", message="Debe ingresar únicamente letras")	
+		//@Min(value=4, message= "Debe ingresar un número mayor o igual a 4 ")
+		//@Min(4)
+		private String nombre;
 		
 		//@NotBlank
-		//@Size(min=3, max=30, message="El apellido debe contener como mínimo 3 caracteres y como máximo 30 caracteres")
-		//@Pattern(regexp= "[a-z A-Z]*", message="Debe ingresar únicamente letras")
+		@Size(min=3, max=30, message="El apellido debe contener como mínimo 3 caracteres y como máximo 30 caracteres")
+		@Pattern(regexp= "[a-z A-Z]*", message="Debe ingresar únicamente letras")
 	    private String apellido;
 		
 		//@NotNull
-		//@Past (message="La fecha de nacimiento debe ser una fecha pasada")
+		@Past (message="La fecha de nacimiento debe ser una fecha pasada")
 	    private LocalDate fechaNac;
 	    
 	    //@NotNull
+		@Size(min=2, max=30, message="El apellido debe contener como mínimo 3 caracteres y como máximo 30 caracteres")
 	    private String automovil;
 	    
 	    
