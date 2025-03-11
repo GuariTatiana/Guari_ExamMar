@@ -63,6 +63,11 @@ public class ConductorController {
 		modelView.addObject("listadoConductores", conductorService.mostrarConductore());
 		
 		try{
+			// Verificar la edad
+	        if (conductorParaGuardar.getEdad() < 18) {
+	            resultado.rejectValue("fechaNac", "error.fechaNac", "Debes tener al menos 18 años.");
+	        }
+			
 			if (resultado.hasErrors()) {
 				// Si hay errores, redirige al formulario
 				modelView.setViewName("formConductor");
