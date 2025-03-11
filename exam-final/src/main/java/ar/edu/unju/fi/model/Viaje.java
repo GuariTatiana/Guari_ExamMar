@@ -20,7 +20,7 @@ public class Viaje {
 	//@NotNull(message = "El ID del viaje no puede ser nulo.")
     private Integer codigo;
     
-   // @NotNull(message = "El tipo de viaje no puede ser nulo.")
+   //@NotNull(message = "El tipo de viaje no puede ser nulo.")
     private String tipoViaje; // "corta", "media", "larga"private TipoViaje tipo
     
     //@NotNull

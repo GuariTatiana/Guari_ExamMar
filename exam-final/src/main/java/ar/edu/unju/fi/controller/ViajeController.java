@@ -1,8 +1,6 @@
 package ar.edu.unju.fi.controller;
 
 import org.springframework.stereotype.Controller;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +13,7 @@ import ar.edu.unju.fi.model.Viaje;
 import ar.edu.unju.fi.service.ConductorService;
 import ar.edu.unju.fi.service.ViajeService;
 //import ar.edu.unju.fi.service.ConductorService;
+
 
 
 @Controller 
@@ -44,6 +43,7 @@ public class ViajeController {
 	return modelView;//devolver 		
 	}
 
+	
 	//metodo para guardar el producto
 	@PostMapping("/viaje/guardar")
 	public ModelAndView guardarViaje(Viaje viaje) {
@@ -59,9 +59,6 @@ public class ViajeController {
 			
 	}
 	
-	
-	
-
 }
 	
 	//@GetMapping("/viaje/listar")

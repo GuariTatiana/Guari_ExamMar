@@ -36,13 +36,12 @@
     
     <div class="col-sm-6">
     <label class="form-label">Conductores:</label>
-    <select id="conductores" class="form-control" th:field="*{conductores}" multiple>
+    <select id="conductores" class="form-control" th:field="*{conductores}" multiple required>
         <option th:each="conductor : ${listadoConductores}" 
                 th:value="${conductor.codigo}" 
                 th:text="${conductor.nombre}"> 
         </option>
     </select>
-
 </div> 
     <br>
     <!--  <div class="col-sm-6">
@@ -56,8 +55,8 @@
     </div>-->
     <div class="col-sm-6">
     <label for="tipoViaje" class="form-label">Tipo Viaje:</label>
-	<select class="form-select" id="tipoViaje" aria-label="Default select example" th:field="*{tipoViaje}">
-	  <option value="1"></option>
+	<select class="form-select" id="tipoViaje" aria-label="Default select example" th:field="*{tipoViaje}" required>
+	  <option value=""></option>
 	  <option value="corta">Corta distancia</option>
 	  <option value="media">Media distancia</option>
 	  <option value="larga">Larga distancia</option>
