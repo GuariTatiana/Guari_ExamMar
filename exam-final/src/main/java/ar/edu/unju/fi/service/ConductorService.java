@@ -17,6 +17,6 @@ public interface ConductorService {
 	public List<ConductorDTO> mostrarConductore ();
 	//proceso de borrado
 	public void eliminarConductor(Integer codigo);
-	public void modificarConductor(ConductorDTO conductorDTO);
-	public ConductorDTO buscarConductor(Integer codigo);
+	public void modificarConductor(Conductor conductor);
+	public Conductor buscarConductor(Integer codigo);
 }

@@ -58,15 +58,15 @@ public class ConductorServiceImp implements ConductorService{
 	}
 
 	@Override
-	public void modificarConductor(ConductorDTO conductorDTO) {
+	public void modificarConductor(Conductor conductor) {
 		// Convierte el DTO a la entidad Conductor
-        Conductor conductor = conductorMapDTO.convertirConductorDTOAConductor(conductorDTO);
+       // Conductor conductor = conductorMapDTO.convertirConductorDTOAConductor(conductorDTO);
         
 		// Verifica si el conductor existe
 	    if (conductorRepository.existsById(conductor.getCodigo())) {
 	        // Establece el estado del conductor
 	        conductor.setEstado(true);
-	        // Guarda el conductor (esto actualizará el registro existente)
+	        // Guarda el conductor
 	        conductorRepository.save(conductor);
 	    } else {
 	        System.out.println("Conductor no encontrado para modificar: " + conductor.getCodigo());
@@ -74,18 +74,18 @@ public class ConductorServiceImp implements ConductorService{
 	}
 
 	@Override
-	public ConductorDTO buscarConductor(Integer codigo) {
+	public Conductor buscarConductor(Integer codigo) {
 		// TODO Auto-generated method stub
-		
-		List<Conductor> conductores = conductorRepository.findAll();
-		for (Conductor a : conductores) {
-			if(a.getCodigo().equals(codigo)) {
+		return conductorRepository.findById(codigo).orElse(null);
+		//List<Conductor> conductores = conductorRepository.findAll();
+		//for (Conductor a : conductores) {
+			//if(a.getCodigo().equals(codigo)) {
 				//return a;
 				// Convierte el Conductor a ConductorDTO antes de devolverlo
-	            return conductorMapDTO.convertirConductorAConductorDTO(a);
-			}
-		}
-		return null;
+	            //return conductorMapDTO.convertirConductorAConductorDTO(a);
+			//}
+		//}
+		//return null;
 	}
 
 }

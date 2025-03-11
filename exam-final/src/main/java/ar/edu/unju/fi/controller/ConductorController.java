@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.DTO.ConductorDTO;
+import ar.edu.unju.fi.map.ConductorMapDTO;
 import ar.edu.unju.fi.model.Conductor;
 //import ar.edu.unju.fi.model.Conductor;
 import ar.edu.unju.fi.service.ConductorService;
@@ -23,6 +24,8 @@ public class ConductorController {
 
 		//@Autowired
 		//Conductor nuevoConductor;
+		@Autowired
+		ConductorMapDTO conductorMapDTO;
 		
 		@Autowired
 		ConductorDTO nuevoConductorDTO;
@@ -150,14 +153,24 @@ public class ConductorController {
 	@GetMapping("/modificarConductor/{codigo}")
 	public ModelAndView getFormModificarConductor(@PathVariable Integer codigo) {
 	    ModelAndView modelView = new ModelAndView("formConductor");
-	    ConductorDTO conductor = conductorService.buscarConductor(codigo);
+	    Conductor conductor = conductorService.buscarConductor(codigo);
 	    modelView.addObject("nuevoConductor", conductor);
 	    modelView.addObject("band", true); 
 	    return modelView;
 	}
 
 	@PostMapping("/modificarConductor")
-	public ModelAndView updateConductor(@ModelAttribute("nuevoConductor") ConductorDTO conductorParaActualizar) {
+	public ModelAndView updateConductor(@Valid @ModelAttribute("nuevoConductor") Conductor conductorParaActualizar, BindingResult resultado) {
+		// Verificar la edad
+        if (conductorParaActualizar.getEdad() < 18) {
+            resultado.rejectValue("fechaNac", "error.fechaNac", "Debes tener al menos 18 años.");
+        }
+		if (resultado.hasErrors()) {
+			ModelAndView modelView = new ModelAndView("formConductor");
+	        modelView.addObject("band", true);
+	        modelView.addObject("nuevoConductor", conductorParaActualizar); 
+	        return modelView;
+		}
 		System.out.println("Conductor a actualizar: " + conductorParaActualizar);
 		System.out.println("ID del conductor: " + conductorParaActualizar.getCodigo());
 		conductorService.modificarConductor(conductorParaActualizar);
