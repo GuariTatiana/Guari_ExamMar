@@ -31,19 +31,37 @@ public class ConductorServiceImp implements ConductorService{
 		 conductorRepository.save(conductor);
 	}
 
-	@Override
+	/**@Override
 	public List<ConductorDTO> mostrarConductore() {
 		// TODO Auto-generated method stub
 		//return conductorRepository.findAll();
 		// Devuelve solo los conductores activos
 		//return conductorRepository.findConductorByEstado(true);
-		// Obtiene la lista de conductores activos
-	    List<Conductor> conductores = conductorRepository.findConductorByEstado(true);
+		// Obtener conductores que están activos y disponibles
+	    List<Conductor> conductores = conductorRepository.findConductorByEstadoAndDisponible(true, true);
+	    List<ConductorDTO> conductoresDTO = conductorMapDTO.convertirListaConductoresAListaConductoresDTO(conductores);
 	    
+	 // Establecer la disponibilidad
+       // for (ConductorDTO conductorDTO : conductoresDTO) {
+         //   conductorDTO.setDisponible(true); // O establece la lógica según tu aplicación
+        //}
+        
+        return conductoresDTO;
 	    // Convierte la lista de conductores a lista de DTOs
-	    return conductorMapDTO.convertirListaConductoresAListaConductoresDTO(conductores);
-	}
+	    //return conductorMapDTO.convertirListaConductoresAListaConductoresDTO(conductores);
+	}**/
 	
+	public List<ConductorDTO> mostrarConductore() {
+	    // Obtener conductores que están activos
+	    List<Conductor> conductoresActivos = conductorRepository.findConductorByEstado(true);
+	    List<ConductorDTO> conductoresDTOActivos = conductorMapDTO.convertirListaConductoresAListaConductoresDTO(conductoresActivos);
+	    
+	    // Obtener conductores que están disponibles
+	    List<Conductor> conductoresDisponibles = conductorRepository.findConductorByDisponible(true);
+	    List<ConductorDTO> conductoresDTODisponibles = conductorMapDTO.convertirListaConductoresAListaConductoresDTO(conductoresDisponibles);
+	    
+	    return conductoresDTOActivos;
+	}
 	
 	@Override
 	public void eliminarConductor (Integer codigo) {
@@ -56,6 +74,15 @@ public class ConductorServiceImp implements ConductorService{
 			}
 		}
 	}
+	
+	/**@Override
+	public void eliminarConductor(Integer codigo) {
+	    Conductor conductor = conductorRepository.findById(codigo).orElse(null);
+	    if (conductor != null) {
+	        conductor.setEstado(false); // Marcar como inactivo
+	        conductorRepository.save(conductor);
+	    }
+	}**/
 
 	@Override
 	public void modificarConductor(Conductor conductor) {

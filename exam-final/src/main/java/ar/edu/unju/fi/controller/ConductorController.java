@@ -37,9 +37,9 @@ public class ConductorController {
 	@GetMapping({"/formularioConductor"})
 		
 		public ModelAndView getFormConductor() {
-		//vista
+		//vista crea un nuevo objeto
 		ModelAndView modelView =new ModelAndView ("formConductor");
-		//agrega el objeto
+		//agrega el nuevo objeto
 		modelView.addObject("nuevoConductor", nuevoConductorDTO);
 		modelView.addObject("band", false);
 		return modelView;		
@@ -63,7 +63,7 @@ public class ConductorController {
 	@PostMapping("/guardarConductor")
 	public ModelAndView saveConductor(@Valid @ModelAttribute("nuevoConductor") Conductor conductorParaGuardar, BindingResult resultado) {
 		ModelAndView modelView = new ModelAndView();
-		modelView.addObject("listadoConductores", conductorService.mostrarConductore());
+		//modelView.addObject("listadoConductores", conductorService.mostrarConductore());
 		
 		try{
 			// Verificar la edad
@@ -72,7 +72,7 @@ public class ConductorController {
 	        }
 			
 			if (resultado.hasErrors()) {
-				// Si hay errores, redirige al formulario
+				// Si hay errores de validacion, redirige al formulario
 				modelView.setViewName("formConductor");
 				modelView.addObject("band", false);
 				modelView.addObject("listadoConductores", conductorService.mostrarConductore());
@@ -80,8 +80,13 @@ public class ConductorController {
 				
 			}else {
 				// Si no hay errores, guarda el conductor
+	            conductorParaGuardar.setDisponible(conductorParaGuardar.isDisponible());
 				//conductorParaGuardar.setConductor(conductorService.buscarCarrera(alumnoParaGuardar.getCarrera().getCodigo()));
 				conductorService.guardarConductor(conductorParaGuardar);
+				
+				 // Línea de depuración para verificar la lista de conductores después de guardar
+	            System.out.println("Conductores después de guardar: " + conductorService.mostrarConductore());
+	            
 				// Redirige a la vista de índice después de guardar
 	            modelView.setViewName("index");
 				modelView.addObject("listadoConductores", conductorService.mostrarConductore());
@@ -98,7 +103,7 @@ public class ConductorController {
 		catch( Exception e) {
 			boolean errors = true;
 			modelView.addObject("errors", errors);
-			modelView.addObject("cargaAlumnoErrorMessage", " Error al cargar en la BD " + e.getMessage());
+			modelView.addObject("cargaConductorErrorMessage", " Error al cargar en la BD " + e.getMessage());
 			System.out.println(e.getMessage());
 		}
 		
@@ -130,6 +135,7 @@ public class ConductorController {
 		return modelView;		
 	}**/
 	
+	//muestra la lista de conductores
 	@GetMapping("/index")
 	public ModelAndView mostrarListaConductores() {
 	    ModelAndView modelView = new ModelAndView("index");
@@ -141,10 +147,12 @@ public class ConductorController {
 	public ModelAndView borrarConductor (@PathVariable Integer codigo) {
 		//borrar
 		//ListadoConductores.eliminarConductor(codigo);
+		//llamamos al servicio para eliminar conductor de BD
 		conductorService.eliminarConductor(codigo);
 		
 		//mostrar el nuevo listado
 		ModelAndView modelView = new ModelAndView("index");
+		//actualiza la lista
 		modelView.addObject("listadoConductores", conductorService.mostrarConductore());	
 		
 		return modelView;		
@@ -154,6 +162,7 @@ public class ConductorController {
 	public ModelAndView getFormModificarConductor(@PathVariable Integer codigo) {
 	    ModelAndView modelView = new ModelAndView("formConductor");
 	    Conductor conductor = conductorService.buscarConductor(codigo);
+	    //conductor encontrado
 	    modelView.addObject("nuevoConductor", conductor);
 	    modelView.addObject("band", true); 
 	    return modelView;
@@ -173,8 +182,10 @@ public class ConductorController {
 		}
 		System.out.println("Conductor a actualizar: " + conductorParaActualizar);
 		System.out.println("ID del conductor: " + conductorParaActualizar.getCodigo());
+		conductorParaActualizar.setDisponible(conductorParaActualizar.isDisponible());
+		//llama al servicio para actualizar conductor en la bd
 		conductorService.modificarConductor(conductorParaActualizar);
-	    
+	    //crea objeto
 	    ModelAndView modelView = new ModelAndView("index");
 	    modelView.addObject("listadoConductores", conductorService.mostrarConductore());
 	    

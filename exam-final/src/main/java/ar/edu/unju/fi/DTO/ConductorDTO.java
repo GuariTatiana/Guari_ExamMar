@@ -23,4 +23,5 @@ public class ConductorDTO {
     private String tipoAutomovil;
     private boolean estado;
     private int edad;
+    private boolean disponible;
 }

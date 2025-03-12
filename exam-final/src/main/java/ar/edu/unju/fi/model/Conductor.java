@@ -51,6 +51,11 @@ public class Conductor {
 	    
 	    private boolean estado;
 	    
+	 
+	        private boolean disponible = true; // true si está disponible, false si no
+	        // otros atributos y métodos
+	    
+	    
 	    @ManyToMany(mappedBy = "conductores") 
 	    private List<Viaje> viajes;
 	    

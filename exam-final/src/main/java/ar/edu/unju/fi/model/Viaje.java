@@ -24,16 +24,26 @@ public class Viaje {
     private String tipoViaje; // "corta", "media", "larga"private TipoViaje tipo
     
     //@NotNull
-    private double costo; // Costo base del viaje
+    //private double costo; // Costo base del viaje
     
     //private String tipoConductor;
     
     //private Conductor conductor;
     
+    private double costo;
+    
     private boolean estado;
+    
+    public boolean verificarDisponibilidadConductor(Conductor conductor) {
+        return conductor.isEstado(); // Verifica si el conductor está activo
+    }
     
     @ManyToMany 
     private List<Conductor> conductores;
+    
+    public void GuardarCostoTotal() {
+     costo = calcularCostoTotal();
+    }
 
     public double calcularCostoTotal() {
         double costoBase = obtenerCostoBase();
@@ -72,6 +82,8 @@ public class Viaje {
         }
         return adicional;
     }
+    
+    
     
    /** private double obtenerAdicional() {
     	double adicional = 0;

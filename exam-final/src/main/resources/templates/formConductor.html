@@ -59,6 +59,14 @@
 		  <option value="Premium">Premium</option>
 		</select> 
   </div>
+  <br>
+  <div class="col-sm-6">
+            <label for="disponible" class="form-label">Disponibilidad:</label>
+            <select id="disponible" data-th-field="*{disponible}" class="form-select" required>
+                <option value="true" data-th-selected="${nuevoConductor.disponible}">Disponible</option>
+                <option value="false" data-th-selected="${!nuevoConductor.disponible}">No Disponible</option>
+            </select>
+        </div>
   
   <br>
   <button type="submit" class="btn btn-primary">Guardar</button>

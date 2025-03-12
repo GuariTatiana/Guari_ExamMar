@@ -45,8 +45,9 @@ public class ViajeController {
 
 	
 	//metodo para guardar el producto
-	@PostMapping("/viaje/guardar")
+	/**@PostMapping("/viaje/guardar")
 	public ModelAndView guardarViaje(Viaje viaje) {
+		
 		viajeService.guardarViaje(viaje); // Llamar al servicio para guardar el producto en bd
 		// Redirigir a la lista de viajes
 		ModelAndView modelAndView = new ModelAndView("reservaViaje");
@@ -57,6 +58,18 @@ public class ViajeController {
 		modelAndView.addObject("mensaje", "Viaje guardado con éxito!"); // Mensaje de éxito
         return modelAndView;
 			
+	}**/
+	
+	@PostMapping("/viaje/guardar")
+	public ModelAndView guardarViaje(Viaje viaje) {
+	    ModelAndView modelAndView = new ModelAndView("reservaViaje");
+	    try {
+	        viajeService.guardarViaje(viaje); 
+	        modelAndView.addObject("mensaje", "Viaje guardado con éxito!");
+	    } catch (IllegalStateException e) {
+	        modelAndView.addObject("mensaje", e.getMessage()); 
+	    }
+	    return modelAndView;
 	}
 	
 }

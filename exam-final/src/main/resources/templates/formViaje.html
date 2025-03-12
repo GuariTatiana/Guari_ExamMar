@@ -34,7 +34,7 @@
         </option>
     </select></div>-->
     
-    <div class="col-sm-6">
+   <!--   <div class="col-sm-6">
     <label class="form-label">Conductores:</label>
     <select id="conductores" class="form-control" th:field="*{conductores}" multiple required>
         <option th:each="conductor : ${listadoConductores}" 
@@ -42,7 +42,18 @@
                 th:text="${conductor.nombre}"> 
         </option>
     </select>
-</div> 
+</div>-->
+
+ <div class="col-sm-6">
+            <label class="form-label">Conductores:</label>
+            <select id="conductores" class="form-control" th:field="*{conductores}" multiple required>
+                <option th:each="conductor : ${listadoConductores}" 
+                        th:value="${conductor.codigo}" 
+                        th:text="${conductor.nombre}" 
+                        th:disabled="${!conductor.disponible}"> 
+                </option>
+            </select>
+        </div>
     <br>
     <!--  <div class="col-sm-6">
     <label for="tipoConduc" class="form-label">Revise el tipo de vehiculo del conductor:</label>

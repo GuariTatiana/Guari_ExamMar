@@ -13,4 +13,7 @@ import ar.edu.unju.fi.model.Viaje;
 public interface ViajeRepository extends JpaRepository <Viaje, Integer>{
 
 	List <Viaje> findViajeByEstado (Boolean estado);
+	// Método para encontrar viajes por conductor
+    List<Viaje> findByConductores_Codigo(Integer conductorId);
+
 }

@@ -37,6 +37,9 @@
 			<p class="card-text" data-th-text="${conductor.edad}"></p>
 			<p class="card-text" data-th-text="${conductor.automovil}"></p>
 			<p class="card-text" data-th-text="${conductor.tipoAutomovil}"></p>
+			<!-- Mostrar disponibilidad -->
+                <p class="card-text" data-th-text="${conductor.disponible ? 'Disponible' : 'No Disponible'}"></p>
+                
 			
 			<a  data-th-href="@{'/eliminarConductor/'+${conductor.codigo}}" class="btn btn-danger">Borrar</a>					
 			<a  data-th-href="@{'/modificarConductor/'+${conductor.codigo}}" class="btn btn-warning" >Modificar</a>
